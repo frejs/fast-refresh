@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/frejs/fast-fresh#readme",
   "dependencies": {
-    "@swc/core": "^1.2.66"
+    "@swc/core": "^1.2.66",
+    "fre": "^2.1.0"
   }
 }

@@ -93,3 +93,8 @@
     "@swc/core-win32-arm64-msvc" "^1.2.66"
     "@swc/core-win32-ia32-msvc" "^1.2.66"
     "@swc/core-win32-x64-msvc" "^1.2.66"
+
+fre@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/fre/-/fre-2.1.0.tgz#3052c81ddfb5367889df241ab266a24643f44af9"
+  integrity sha512-5yPzbVXTFr/o9FRprtLGifmD6Njf39cBVKc8WvK3wzz5qt0TDogzcH/9lpMk376n5t0qPfHxpEa/xebDBtITTA==
