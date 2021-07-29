@@ -55,6 +55,6 @@ module.exports = function frefresh() {
 
 function canRefresh(code) {
     // export default must be fre component
-    const name = code.match(/^(\s*)export\s+default\s+/m)
+    const name = code.match(/^(\s*)export\s+default\s+/m)[0]
     return typeof name === 'string' && name[0] >= 'A' && name[0] <= 'Z'
 }
