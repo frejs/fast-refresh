@@ -2,7 +2,7 @@ const swc = require("@swc/core")
 
 module.exports = function frefresh() {
     return {
-        name: 'fre-fresh',
+        name: 'fre-refresh',
         transfrom: async (code, id) => {
             if (!/\.(t|j)sx?$/.test(id) || id.includes('node_modules')) {
                 return
