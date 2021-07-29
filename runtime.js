@@ -15,5 +15,5 @@ export function sign() {
 }
 
 export function refresh() {
-    queue.some(c => schedule(c))
+    queue.forEach(c => schedule(c))
 }
