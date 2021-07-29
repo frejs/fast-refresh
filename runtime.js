@@ -6,7 +6,7 @@ let queue = new Set()
 export function register(type, name) {
     const ref = graph.get(type)
     if (!ref) {
-        graph.set(type, { n: name, f: null })
+        graph.set(type, { n: name, f: null, k: null })
     }
 }
 
