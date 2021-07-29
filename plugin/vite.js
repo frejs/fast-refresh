@@ -1,9 +1,9 @@
 const swc = require("@swc/core")
 
-module.exports = async function frefresh() {
+module.exports = function frefresh() {
     return {
         name: 'fre-fresh',
-        transfrom(code, id) {
+        transfrom: async (code, id) =>{
             if (!/\.(t|j)sx?$/.test(id) || id.includes('node_modules')) {
                 return
             }
@@ -27,11 +27,25 @@ module.exports = async function frefresh() {
                 }
             })
 
+            const runtimecode = `
+            const runtime = require('@fre/fast-refresh');
+            var prevReg, prevSig;
+            prevReg = window.$RefreshReg$ = function(type,id){
+                runtime.register(type,id);
+            };
+            prevSig = window.$RefreshSig$ = runtime.sign;
+            try {
+                ${code}
+            } finally {
+                window.$RefreshReg$ = prevReg;
+                window.$RefreshSig$ = prevSig;
+            };
+            `
+
             return {
-                code,
+                runtimecode,
                 map
             }
-
         }
     }
 }
