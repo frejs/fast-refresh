@@ -1,0 +1,23 @@
+{
+  "name": "fast-fresh",
+  "version": "1.0.0",
+  "description": "fre fast refresh use swc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frejs/fast-fresh.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frejs/fast-fresh/issues"
+  },
+  "homepage": "https://github.com/frejs/fast-fresh#readme",
+  "dependencies": {
+    "@swc/core": "^1.2.66"
+  }
+}
