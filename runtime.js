@@ -3,17 +3,26 @@ import { getCurrentFiber, schedule } from 'fre'
 let graph = new Map()
 let queue = new Set()
 
-export function register(type, id) {
-    graph.set(type, id) // fn => name
+export function register(type, name) {
+    const ref = graph.get(type)
+    if (!ref) {
+        graph.set(type, { n: name, f: null })
+    }
 }
 
 export function sign() {
     return (type, key) => { // fn => key
-        const current = getCurrentFiber()
-        queue.add(current)
+        const ref = graph.get(type)
+        const fiber = getCurrentFiber()
+        if (ref) {
+            ref.f = fiber
+            ref.k = key
+        }
+        queue.add(ref)
     }
 }
 
 export function refresh() {
-    queue.forEach(c => schedule(c))
+    queue.forEach(ref => schedule(ref.f))
+    queue.size = 0
 }
