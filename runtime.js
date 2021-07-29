@@ -10,8 +10,7 @@ export function register(type, id) {
 export function sign() {
     return (type, key) => { // fn => key
         const current = getCurrentFiber()
-        queue.push(current)
-        
+        queue.add(current)
     }
 }
 

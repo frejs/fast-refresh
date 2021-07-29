@@ -32,9 +32,7 @@ module.exports = function frefresh() {
             var prevReg, prevSig;
             
             if (import.meta.hot) {
-                prevReg = window.$RefreshReg$ = function(type,id){
-                    runtime.register(type, ${JSON.stringify(id)} + " " + id);
-                };
+                prevReg = window.$RefreshReg$ = runtime.register;
                 prevSig = window.$RefreshSig$ = runtime.sign; 
             }
             `
@@ -43,12 +41,7 @@ module.exports = function frefresh() {
                 window.$RefreshReg$ = prevReg;
                 window.$RefreshSig$ = prevSig;
                 ${canRefresh(code) ? `import.meta.hot.accept();` : ''}
-                if (!window.vite_fre_plugin_timeout) {
-                    window.vite_fre_plugin_timeout = setTimeout(() => {
-                        window.vite_fre_plugin_timeout = 0;
-                        runtime.refresh();
-                    }, 30);
-                  }
+                runtime.refresh();
             }
             `
 
@@ -61,6 +54,7 @@ module.exports = function frefresh() {
 }
 
 function canRefresh(code) {
-    // every export must be fre component
-    return true
+    // export default must be fre component
+    const name = code.match(/^(\s*)export\s+default\s+/m)
+    return typeof name === 'string' && name[0] >= 'A' && name[0] <= 'Z'
 }
